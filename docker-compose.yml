@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: irge-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./sql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: irge-chroma
+    command: ["chroma", "run", "--path", "/chroma/chroma"]
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    container_name: irge-api
+    env_file:
+      - .env
+    depends_on:
+      - sqlserver
+      - chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - model_cache:/models
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: irge-prometheus
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: irge-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  sqlserver_data:
+  chroma_data:
+  prometheus_data:
+  grafana_data:
+  model_cache:
