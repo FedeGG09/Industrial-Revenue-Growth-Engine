@@ -1,6 +1,16 @@
 # Industrial Revenue & Growth Engine
 
-A local, industrial-grade AI system for dynamic pricing, lead generation, compliance validation, and auditability.
+A industrial-grade AI system for dynamic pricing, lead generation, compliance validation, and auditability.
+
+<img width="1895" height="867" alt="image" src="https://github.com/user-attachments/assets/2b6a340d-345e-478b-bc28-06d176bbec1a" />
+
+
+## Backend: https://industrial-backend-data.onrender.com/
+
+## Front end live demo: https://industrial-revenue-growth-engine.lovable.app/
+
+<img width="1898" height="831" alt="image" src="https://github.com/user-attachments/assets/5e966a95-05ec-4c8c-964b-150723f8bcdb" />
+
 
 ## Highlights
 
@@ -12,6 +22,9 @@ A local, industrial-grade AI system for dynamic pricing, lead generation, compli
 - Local Hugging Face LLM loader with 4-bit/8-bit quantization
 - Structured logs and Prometheus metrics
 
+<img width="1910" height="853" alt="image" src="https://github.com/user-attachments/assets/55cd79c6-4205-45b6-8098-392f2b0e13cc" />
+
+
 # Industrial Revenue & Growth Engine
 
 ## Overview
@@ -21,6 +34,9 @@ A local, industrial-grade AI system for dynamic pricing, lead generation, compli
 This system is built for industrial environments where **traceability, reliability, and data sovereignty** are critical. It integrates structured data (SQL Server), unstructured insights (vector databases), and local LLM inference to deliver actionable business decisions.
 
 ---
+
+<img width="1895" height="860" alt="image" src="https://github.com/user-attachments/assets/d13a42a0-7a06-47d1-a539-bb7dde592090" />
+
 
 ## Key Capabilities
 
